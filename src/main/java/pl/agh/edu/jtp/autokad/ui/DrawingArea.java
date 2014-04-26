@@ -1,7 +1,6 @@
 package pl.agh.edu.jtp.autokad.ui;
 
 import pl.agh.edu.jtp.autokad.ui.figure.Figure;
-import pl.agh.edu.jtp.autokad.ui.figure.Rectangle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -13,7 +12,7 @@ import java.util.Collection;
  */
 public class DrawingArea extends JPanel{
 
-    private final Collection<Figure> figures = new ArrayList<Figure>();
+    private Collection<Figure> figures = new ArrayList<Figure>();
 
     public DrawingArea() {
         super();

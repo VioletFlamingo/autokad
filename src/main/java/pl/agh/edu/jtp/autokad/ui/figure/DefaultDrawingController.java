@@ -22,7 +22,7 @@ public class DefaultDrawingController implements DrawingController {
 
     public DefaultDrawingController(DrawingArea drawingArea) {
         this.drawingArea= drawingArea;
-        figureFactory = new UserAwareFigureFactory();
+        figureFactory = UserAwareFigureFactory.getInstance();
     }
 
     @Override

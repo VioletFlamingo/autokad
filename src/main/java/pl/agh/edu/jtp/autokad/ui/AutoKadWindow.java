@@ -14,7 +14,6 @@ import java.awt.event.KeyEvent;
  */
 public class AutoKadWindow extends JFrame{
 
-    private UserAwareFigureFactory figureFactory = new UserAwareFigureFactory();
     final DrawingArea comp;
     final DefaultDrawingController drawingController;
 
@@ -30,25 +29,37 @@ public class AutoKadWindow extends JFrame{
         add(comp, BorderLayout.CENTER);
         addMouseListener(new DrawingAreaMouseListener(drawingController));
 
-        JMenuBar menuBar = createManuBar();
+        JMenuBar menuBar = createMenuBar();
         add(menuBar, BorderLayout.PAGE_START);
 
     }
 
-    private JMenuBar createManuBar() {
+
+    private JMenuBar createMenuBar() {
         final JMenuBar menuBar = new JMenuBar();
+        menuBar.add(createFileMenu());
         menuBar.add(createEditMenu());
         return menuBar;
     }
 
     private Component createEditMenu() {
         final JMenu edit = new JMenu("Edit");
-        edit.add(createOpenMenuItem());
-        edit.add(createSaveMenuItem());
         edit.add(createColorMenuItem());
         edit.add(createUndoMenuItem());
         return edit;
+    }
 
+    private Component createFileMenu() {
+        final JMenu file = new JMenu("File");
+        file.add(createOpenMenuItem());
+        file.add(createSaveMenuItem());
+        return file;
+    }
+
+    private JToolBar createFigureToolbar () {
+        final JToolBar toolBar = new JToolBar();
+        //////
+        return toolBar;
     }
 
     private JMenuItem createColorMenuItem() {
@@ -69,7 +80,7 @@ public class AutoKadWindow extends JFrame{
     }
 
     private void changeColor() {
-        ColorChoiceWindow colorChoiceWindow = new ColorChoiceWindow(this.figureFactory);
+        ColorChoiceWindow colorChoiceWindow = new ColorChoiceWindow();
         colorChoiceWindow.setVisible(true);
     }
 

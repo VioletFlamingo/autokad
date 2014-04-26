@@ -10,4 +10,5 @@ public interface DrawingController {
     void draw (Point start, Point end);
 
     void undoLastCommand();
+
 }
