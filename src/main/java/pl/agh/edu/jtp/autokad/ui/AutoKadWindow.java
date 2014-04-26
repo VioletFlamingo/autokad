@@ -5,6 +5,7 @@ import pl.agh.edu.jtp.autokad.ui.figure.DefaultDrawingController;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 
@@ -31,6 +32,7 @@ public class AutoKadWindow extends JFrame{
 
         JMenuBar menuBar = createManuBar();
         add(menuBar, BorderLayout.PAGE_START);
+
     }
 
     private JMenuBar createManuBar() {
@@ -41,12 +43,73 @@ public class AutoKadWindow extends JFrame{
 
     private Component createEditMenu() {
         final JMenu edit = new JMenu("Edit");
-        edit.add(createUndoMenoItem());
+        edit.add(createOpenMenuItem());
+        edit.add(createSaveMenuItem());
+        edit.add(createColorMenuItem());
+        edit.add(createUndoMenuItem());
         return edit;
 
     }
 
-    private JMenuItem createUndoMenoItem() {
+    private JMenuItem createColorMenuItem() {
+        final JMenuItem setColor = new JMenuItem("Set color");
+        setColor.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                changeColor();
+            }
+        });
+
+        //ctrl+c changes color
+        final KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_C, InputEvent.CTRL_DOWN_MASK);
+
+        setColor.setAccelerator(keyStroke);
+
+        return setColor;
+    }
+
+    private void changeColor() {
+        ColorChoiceWindow colorChoiceWindow = new ColorChoiceWindow(this.figureFactory);
+        colorChoiceWindow.setVisible(true);
+    }
+
+
+    private JMenuItem createOpenMenuItem() {
+        final JMenuItem open = new JMenuItem("Open");
+        open.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ////
+            }
+        });
+
+        //ctrl+o opens picture
+        final KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK);
+
+        open.setAccelerator(keyStroke);
+
+        return open;
+
+    }
+
+    private JMenuItem createSaveMenuItem() {
+        final JMenuItem save = new JMenuItem("Save");
+        save.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                ////
+            }
+        });
+
+        //ctrl+s saves picture
+        final KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK);
+
+        save.setAccelerator(keyStroke);
+
+        return save;
+    }
+
+    private JMenuItem createUndoMenuItem() {
         final JMenuItem undo = new JMenuItem("Undo");
         undo.addActionListener(new AbstractAction() {
             @Override

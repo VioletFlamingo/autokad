@@ -17,7 +17,7 @@ public class DrawingArea extends JPanel{
 
     public DrawingArea() {
         super();
-        setBackground(Color.GREEN);
+        setBackground(Color.WHITE);
     }
 
     @Override
