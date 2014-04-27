@@ -11,4 +11,6 @@ public interface FigureFactory {
     Figure createFigure(Point start, Point end);
 
     void setColor(Color color);
+
+    void setFigure(Class figureClass);
 }

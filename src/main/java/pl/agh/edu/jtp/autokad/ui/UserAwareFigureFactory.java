@@ -1,8 +1,6 @@
 package pl.agh.edu.jtp.autokad.ui;
 
-import pl.agh.edu.jtp.autokad.ui.figure.Figure;
-import pl.agh.edu.jtp.autokad.ui.figure.Line;
-import pl.agh.edu.jtp.autokad.ui.figure.Oval;
+import pl.agh.edu.jtp.autokad.ui.figure.*;
 import pl.agh.edu.jtp.autokad.ui.figure.Rectangle;
 
 import java.awt.*;
@@ -13,6 +11,7 @@ import java.awt.*;
 public class UserAwareFigureFactory implements FigureFactory {
 
     private Color color=Color.MAGENTA;
+    private Class figureType=Line.class;
 
     private static FigureFactory singleton;
 
@@ -29,15 +28,27 @@ public class UserAwareFigureFactory implements FigureFactory {
 
     @Override
     public Figure createFigure(Point start, Point end) {
-        //Rectangle rectangle = new Rectangle(color, start, end);
-        //return rectangle;
-        //Oval oval = new Oval(color, start, end);
-        //return oval;
-        Line line = new Line(color, start, end);
-        return line;
+        if (figureType==Rectangle.class) {
+            Rectangle rectangle = new Rectangle(color, start, end);
+            return rectangle;
+        } else if (figureType==Oval.class) {
+            Oval oval = new Oval(color, start, end);
+            return oval;
+        } else if (figureType==Line.class) {
+            Line line = new Line(color, start, end);
+            return line;
+        } else {
+            RoundedRectangle roundedRectangle  = new RoundedRectangle(color, start, end);
+            return  roundedRectangle;
+        }
     }
 
     public void setColor(Color color) {
         this.color=color;
+    }
+
+    @Override
+    public void setFigure(Class figureClass) {
+        figureType=figureClass;
     }
 }

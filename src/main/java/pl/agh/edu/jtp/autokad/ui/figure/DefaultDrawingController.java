@@ -41,4 +41,9 @@ public class DefaultDrawingController implements DrawingController {
         }
 
     }
+
+    @Override
+    public void setFigure(Class figureClass) {
+        figureFactory.setFigure(figureClass);
+    }
 }

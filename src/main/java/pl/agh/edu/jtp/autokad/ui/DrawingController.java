@@ -1,5 +1,7 @@
 package pl.agh.edu.jtp.autokad.ui;
 
+import pl.agh.edu.jtp.autokad.ui.figure.Line;
+
 import java.awt.*;
 
 /**
@@ -11,4 +13,5 @@ public interface DrawingController {
 
     void undoLastCommand();
 
+    void setFigure(Class figureClass);
 }

@@ -1,6 +1,6 @@
 package pl.agh.edu.jtp.autokad.ui;
 
-import pl.agh.edu.jtp.autokad.ui.figure.DefaultDrawingController;
+import pl.agh.edu.jtp.autokad.ui.figure.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -26,12 +26,14 @@ public class AutoKadWindow extends JFrame{
 
         comp = new DrawingArea();
         drawingController = new DefaultDrawingController(comp);
+        comp.addMouseListener(new DrawingAreaMouseListener(drawingController));
         add(comp, BorderLayout.CENTER);
-        addMouseListener(new DrawingAreaMouseListener(drawingController));
 
         JMenuBar menuBar = createMenuBar();
         add(menuBar, BorderLayout.PAGE_START);
 
+        JToolBar figureToolBar = createFigureToolbar();
+        add(figureToolBar, BorderLayout.WEST);
     }
 
 
@@ -58,8 +60,49 @@ public class AutoKadWindow extends JFrame{
 
     private JToolBar createFigureToolbar () {
         final JToolBar toolBar = new JToolBar();
-        //////
+        addFigureToolBarButtons(toolBar);
         return toolBar;
+    }
+
+    private void addFigureToolBarButtons(JToolBar figureToolBar) {
+        figureToolBar.setLayout(new BoxLayout(figureToolBar, BoxLayout.PAGE_AXIS));
+        JButton rectangleButton = new JButton("Rectangle");
+        rectangleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawingController.setFigure(pl.agh.edu.jtp.autokad.ui.figure.Rectangle.class);
+            }
+        });
+        figureToolBar.add(rectangleButton);
+
+        JButton ovalButton = new JButton("Oval");
+        ovalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawingController.setFigure(Oval.class);
+            }
+        });
+        figureToolBar.add(ovalButton);
+
+        JButton lineButton = new JButton("Line");
+        lineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawingController.setFigure(Line.class);
+            }
+        });
+        figureToolBar.add(lineButton);
+
+
+        JButton roundedRectangleButton = new JButton("Rounded rectangle");
+        roundedRectangleButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawingController.setFigure(RoundedRectangle.class);
+            }
+        });
+        figureToolBar.add(roundedRectangleButton);
+
     }
 
     private JMenuItem createColorMenuItem() {
