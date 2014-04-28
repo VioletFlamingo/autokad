@@ -16,10 +16,14 @@ public class ColorChoiceWindow extends JDialog {
 
     public ColorChoiceWindow() {
         super();
-        setSize(700, 350);
         getContentPane().setLayout(new FlowLayout());
 
         colorChooser= new JColorChooser();
+
+        Dimension frameDimension = new Dimension(colorChooser.getPreferredSize());
+        frameDimension.setSize(frameDimension.getWidth(), frameDimension.getHeight());
+        setSize(frameDimension);
+
         colorChooser.setPreviewPanel(new JPanel());
         colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             @Override

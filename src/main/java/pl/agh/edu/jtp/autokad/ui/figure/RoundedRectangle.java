@@ -20,7 +20,6 @@ public class RoundedRectangle implements Figure{
     @Override
     public void paint(Graphics g) {
         g.setColor(color);
-        //
-        g.fillRoundRect(corner.x, corner.y, dimension.width, dimension.height, dimension.width/10, dimension.height/10);
+        g.fillRoundRect(corner.x, corner.y, dimension.width, dimension.height, dimension.width/5, dimension.height/5);
     }
 }

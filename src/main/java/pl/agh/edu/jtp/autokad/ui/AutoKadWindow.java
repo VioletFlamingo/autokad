@@ -1,5 +1,6 @@
 package pl.agh.edu.jtp.autokad.ui;
 
+
 import pl.agh.edu.jtp.autokad.ui.figure.*;
 
 import javax.swing.*;
@@ -133,7 +134,8 @@ public class AutoKadWindow extends JFrame{
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ////
+                JFileChooser openFile = new JFileChooser();
+                openFile.showOpenDialog(null);
             }
         });
 
@@ -151,7 +153,8 @@ public class AutoKadWindow extends JFrame{
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ////
+                JFileChooser saveFile = new JFileChooser();
+                saveFile.showSaveDialog(null);
             }
         });
 
