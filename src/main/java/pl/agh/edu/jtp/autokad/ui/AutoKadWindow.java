@@ -67,7 +67,9 @@ public class AutoKadWindow extends JFrame{
 
     private void addFigureToolBarButtons(JToolBar figureToolBar) {
         figureToolBar.setLayout(new BoxLayout(figureToolBar, BoxLayout.PAGE_AXIS));
-        JButton rectangleButton = new JButton("Rectangle");
+
+
+        JButton rectangleButton = FigureButton.getRectangleButton();
         rectangleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -76,7 +78,9 @@ public class AutoKadWindow extends JFrame{
         });
         figureToolBar.add(rectangleButton);
 
-        JButton ovalButton = new JButton("Oval");
+
+
+        JButton ovalButton = FigureButton.getOvalButton();
         ovalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -85,7 +89,7 @@ public class AutoKadWindow extends JFrame{
         });
         figureToolBar.add(ovalButton);
 
-        JButton lineButton = new JButton("Line");
+        JButton lineButton = FigureButton.getLineButton();
         lineButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -95,7 +99,7 @@ public class AutoKadWindow extends JFrame{
         figureToolBar.add(lineButton);
 
 
-        JButton roundedRectangleButton = new JButton("Rounded rectangle");
+        JButton roundedRectangleButton = FigureButton.getRoundedRectangleButton();
         roundedRectangleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -134,8 +138,7 @@ public class AutoKadWindow extends JFrame{
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser openFile = new JFileChooser();
-                openFile.showOpenDialog(null);
+                FileManager.openFile();
             }
         });
 
@@ -153,8 +156,7 @@ public class AutoKadWindow extends JFrame{
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFileChooser saveFile = new JFileChooser();
-                saveFile.showSaveDialog(null);
+                FileManager.saveFile();
             }
         });
 
