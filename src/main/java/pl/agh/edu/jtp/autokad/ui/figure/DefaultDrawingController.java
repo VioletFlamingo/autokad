@@ -46,4 +46,5 @@ public class DefaultDrawingController implements DrawingController {
     public void setFigure(Class figureClass) {
         figureFactory.setFigure(figureClass);
     }
+
 }

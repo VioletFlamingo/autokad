@@ -1,11 +1,12 @@
 package pl.agh.edu.jtp.autokad.ui.figure;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Created by Paulina on 27.04.2014.
  */
-public class RoundedRectangle implements Figure{
+public class RoundedRectangle implements Figure, Serializable {
 
     private final Color color;
     private final Point corner;

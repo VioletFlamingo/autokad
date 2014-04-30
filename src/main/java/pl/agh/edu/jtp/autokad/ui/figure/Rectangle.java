@@ -1,11 +1,12 @@
 package pl.agh.edu.jtp.autokad.ui.figure;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Created by Paulina on 24.04.2014.
  */
-public class Rectangle implements Figure {
+public class Rectangle implements Figure, Serializable {
 
     private final Color color;
     private final Point corner;

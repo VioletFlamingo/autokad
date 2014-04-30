@@ -1,10 +1,7 @@
 package pl.agh.edu.jtp.autokad.ui;
 
 import javax.swing.*;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 
 /**
  * Created by Paulina on 28.04.2014.
@@ -14,20 +11,27 @@ public class FileManager {
         JFileChooser openFile = new JFileChooser();
         openFile.showOpenDialog(null);
         File file = openFile.getSelectedFile();
-        DrawingArea drawingArea=null;
+        DrawingArea drawingArea=new DrawingArea();
         try {
-            drawingArea=(DrawingArea) new ObjectInputStream(new FileInputStream(file)).readObject();
-        } catch (IOException e) {
-            e.printStackTrace();
+            drawingArea.readExternal(new ObjectInputStream(new FileInputStream(file)));
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return drawingArea;
     }
 
-    public static void saveFile() {
+    public static void saveFile(DrawingArea drawingArea) {
         JFileChooser saveFile = new JFileChooser();
         saveFile.showSaveDialog(null);
-        //saveFile.
+        try(ObjectOutputStream objectOutput = new ObjectOutputStream(
+                new FileOutputStream(saveFile.getSelectedFile()))){
+            drawingArea.writeExternal(objectOutput);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

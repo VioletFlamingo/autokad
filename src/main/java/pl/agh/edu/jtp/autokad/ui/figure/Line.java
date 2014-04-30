@@ -1,11 +1,12 @@
 package pl.agh.edu.jtp.autokad.ui.figure;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * Created by Paulina on 27.04.2014.
  */
-public class Line implements Figure {
+public class Line implements Figure, Serializable {
     private final Color color;
     private final Point start;
     private final Point end;
