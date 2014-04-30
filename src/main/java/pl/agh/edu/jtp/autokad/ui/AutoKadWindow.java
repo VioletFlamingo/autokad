@@ -79,7 +79,6 @@ public class AutoKadWindow extends JFrame{
         figureToolBar.add(rectangleButton);
 
 
-
         JButton ovalButton = FigureButton.getOvalButton();
         ovalButton.addActionListener(new ActionListener() {
             @Override
