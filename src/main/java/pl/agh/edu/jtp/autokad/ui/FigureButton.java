@@ -16,6 +16,8 @@ public class FigureButton {
             rectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("rect.jpg"))));
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             rectangleButton.setText("RECTANGLE");
         }
         return rectangleButton;
@@ -27,6 +29,8 @@ public class FigureButton {
         try {
             ovalButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("oval.jpg"))));
         } catch (IOException e) {
+            e.printStackTrace();
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
             ovalButton.setText("OVAL");
         }
@@ -40,6 +44,8 @@ public class FigureButton {
             roundedRectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("roundrect.jpg"))));
         } catch (IOException e) {
             e.printStackTrace();
+        }  catch (IllegalArgumentException e) {
+            e.printStackTrace();
             roundedRectangleButton.setText("ROUNDED RECTANGLE");
         }
         return roundedRectangleButton;
@@ -51,6 +57,8 @@ public class FigureButton {
         try {
             lineButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("Line.jpg"))));
         } catch (IOException e) {
+            e.printStackTrace();
+        }  catch (IllegalArgumentException e) {
             e.printStackTrace();
             lineButton.setText("LINE");
         }
