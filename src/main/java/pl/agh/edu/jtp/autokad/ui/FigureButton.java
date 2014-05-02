@@ -1,5 +1,6 @@
 package pl.agh.edu.jtp.autokad.ui;
 
+import pl.agh.edu.jtp.autokad.ui.figure.Figure;
 import pl.agh.edu.jtp.autokad.ui.figure.Line;
 import pl.agh.edu.jtp.autokad.ui.figure.Oval;
 import pl.agh.edu.jtp.autokad.ui.figure.RoundedRectangle;
@@ -16,17 +17,7 @@ import java.io.IOException;
  */
 public class FigureButton {
     public static JButton getRectangleButton (final DrawingController drawingController) {
-        JButton rectangleButton = new JButton();
-        rectangleButton.setSize(new Dimension(30, 30));
-        try {
-            rectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("rect.jpg"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-            rectangleButton.setText("RECTANGLE");
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            rectangleButton.setText("RECTANGLE");
-        }
+        JButton rectangleButton = getSimpleRectangleButton();
         rectangleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -37,17 +28,7 @@ public class FigureButton {
     }
 
     public static JButton getOvalButton (final DrawingController drawingController) {
-        JButton ovalButton = new JButton();
-        ovalButton.setSize(new Dimension(30, 30));
-        try {
-            ovalButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("oval.jpg"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-            ovalButton.setText("OVAL");
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            ovalButton.setText("OVAL");
-        }
+        JButton ovalButton = getSimpleOvalButton();
         ovalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,17 +39,7 @@ public class FigureButton {
     }
 
     public static JButton getRoundedRectangleButton (final DrawingController drawingController) {
-        JButton roundedRectangleButton = new JButton();
-        roundedRectangleButton.setSize(new Dimension(30, 30));
-        try {
-            roundedRectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("roundrect.jpg"))));
-        } catch (IOException e) {
-            e.printStackTrace();
-            roundedRectangleButton.setText("ROUNDED RECTANGLE");
-        }  catch (IllegalArgumentException e) {
-            e.printStackTrace();
-            roundedRectangleButton.setText("ROUNDED RECTANGLE");
-        }
+        JButton roundedRectangleButton = getSimpleRoundedRectangleButton();
         roundedRectangleButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -79,6 +50,17 @@ public class FigureButton {
     }
 
     public static JButton getLineButton(final DrawingController drawingController) {
+        JButton lineButton = getSimpleLineButton();
+        lineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                drawingController.setFigure(Line.class);
+            }
+        });
+        return lineButton;
+    }
+
+    private static JButton getSimpleLineButton() {
         JButton lineButton = new JButton();
         lineButton.setSize(new Dimension(30, 30));
         try {
@@ -90,12 +72,51 @@ public class FigureButton {
             e.printStackTrace();
             lineButton.setText("LINE");
         }
-        lineButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                drawingController.setFigure(Line.class);
-            }
-        });
         return lineButton;
+    }
+
+    private static JButton getSimpleOvalButton() {
+        JButton ovalButton = new JButton();
+        ovalButton.setSize(new Dimension(30, 30));
+        try {
+            ovalButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("oval.jpg"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+            ovalButton.setText("OVAL");
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            ovalButton.setText("OVAL");
+        }
+        return ovalButton;
+    }
+
+    private static JButton getSimpleRectangleButton() {
+        JButton rectangleButton = new JButton();
+        rectangleButton.setSize(new Dimension(30, 30));
+        try {
+            rectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("rect.jpg"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+            rectangleButton.setText("RECTANGLE");
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            rectangleButton.setText("RECTANGLE");
+        }
+        return rectangleButton;
+    }
+
+    private static JButton getSimpleRoundedRectangleButton() {
+        JButton roundedRectangleButton = new JButton();
+        roundedRectangleButton.setSize(new Dimension(30, 30));
+        try {
+            roundedRectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("roundrect.jpg"))));
+        } catch (IOException e) {
+            e.printStackTrace();
+            roundedRectangleButton.setText("ROUNDED RECTANGLE");
+        }  catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            roundedRectangleButton.setText("ROUNDED RECTANGLE");
+        }
+        return roundedRectangleButton;
     }
 }

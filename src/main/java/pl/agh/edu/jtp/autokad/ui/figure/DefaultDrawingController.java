@@ -1,9 +1,6 @@
 package pl.agh.edu.jtp.autokad.ui.figure;
 
-import pl.agh.edu.jtp.autokad.ui.DrawingArea;
-import pl.agh.edu.jtp.autokad.ui.DrawingController;
-import pl.agh.edu.jtp.autokad.ui.FigureFactory;
-import pl.agh.edu.jtp.autokad.ui.UserAwareFigureFactory;
+import pl.agh.edu.jtp.autokad.ui.*;
 import pl.agh.edu.jtp.autokad.ui.command.Command;
 import pl.agh.edu.jtp.autokad.ui.command.PaintCommand;
 
@@ -47,4 +44,7 @@ public class DefaultDrawingController implements DrawingController {
         figureFactory.setFigure(figureClass);
     }
 
+    public StateBar getDrawingStateBar () {
+        return figureFactory.getStateBar();
+    }
 }

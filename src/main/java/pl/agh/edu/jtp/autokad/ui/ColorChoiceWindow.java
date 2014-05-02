@@ -35,6 +35,6 @@ public class ColorChoiceWindow extends JDialog {
     }
 
     public void setColor () {
-       UserAwareFigureFactory.getInstance().setColor(colorChooser.getColor());
+        UserAwareFigureFactory.getInstance().setColor(colorChooser.getColor());
     }
 }

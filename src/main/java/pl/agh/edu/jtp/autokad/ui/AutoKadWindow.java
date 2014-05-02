@@ -2,6 +2,7 @@ package pl.agh.edu.jtp.autokad.ui;
 
 
 import pl.agh.edu.jtp.autokad.ui.figure.*;
+import pl.agh.edu.jtp.autokad.ui.figure.Rectangle;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +18,8 @@ public class AutoKadWindow extends JFrame{
 
     private DrawingArea comp;
     private final DefaultDrawingController drawingController;
+    private final ErrorLogger errorLogger;
+    private final InfoLogger infoLogger;
 
     public AutoKadWindow(String title) {
         super(title);
@@ -35,6 +38,10 @@ public class AutoKadWindow extends JFrame{
 
         JToolBar figureToolBar = createFigureToolbar();
         add(figureToolBar, BorderLayout.WEST);
+
+        add(drawingController.getDrawingStateBar(), BorderLayout.SOUTH);
+        infoLogger = new InfoLogger();
+        errorLogger = new ErrorLogger();
     }
 
 

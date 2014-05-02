@@ -12,6 +12,7 @@ public class UserAwareFigureFactory implements FigureFactory {
 
     private Color color=Color.MAGENTA;
     private Class figureType=Line.class;
+    private StateBar stateBar = new StateBar(Line.class, color);
 
     private static FigureFactory singleton;
 
@@ -44,11 +45,25 @@ public class UserAwareFigureFactory implements FigureFactory {
     }
 
     public void setColor(Color color) {
+        setStateBarColor(color);
         this.color=color;
+    }
+
+    private void setStateBarColor (Color color) {
+        stateBar.changeColor(color);
+    }
+
+    private void setStateBarFigure (Class figure) {
+        stateBar.changeFigure(figure);
     }
 
     @Override
     public void setFigure(Class figureClass) {
+        setStateBarFigure(figureClass);
         figureType=figureClass;
+    }
+
+    public StateBar getStateBar () {
+        return stateBar;
     }
 }

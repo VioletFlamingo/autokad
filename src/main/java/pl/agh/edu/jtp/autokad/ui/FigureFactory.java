@@ -13,4 +13,6 @@ public interface FigureFactory {
     void setColor(Color color);
 
     void setFigure(Class figureClass);
+
+    StateBar getStateBar();
 }
