@@ -17,6 +17,8 @@ public class DefaultDrawingController implements DrawingController {
     private final DrawingArea drawingArea;
     private final Deque<Command> commands = new LinkedList<Command>();
 
+    private StateBar stateBar = new StateBar(Line.class, Color.MAGENTA);
+
     public DefaultDrawingController(DrawingArea drawingArea) {
         this.drawingArea= drawingArea;
         figureFactory = UserAwareFigureFactory.getInstance();
@@ -42,9 +44,10 @@ public class DefaultDrawingController implements DrawingController {
     @Override
     public void setFigure(Class figureClass) {
         figureFactory.setFigure(figureClass);
+        stateBar.changeFigure(figureClass);
     }
 
     public StateBar getDrawingStateBar () {
-        return figureFactory.getStateBar();
+        return stateBar;
     }
 }

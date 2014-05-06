@@ -106,7 +106,7 @@ public class AutoKadWindow extends JFrame{
     }
 
     private void changeColor() {
-        ColorChoiceWindow colorChoiceWindow = new ColorChoiceWindow();
+        ColorChoiceWindow colorChoiceWindow = new ColorChoiceWindow(drawingController);
         colorChoiceWindow.setVisible(true);
     }
 

@@ -14,5 +14,4 @@ public interface FigureFactory {
 
     void setFigure(Class figureClass);
 
-    StateBar getStateBar();
 }

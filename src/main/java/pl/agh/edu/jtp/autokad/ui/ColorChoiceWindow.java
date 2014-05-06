@@ -14,7 +14,7 @@ public class ColorChoiceWindow extends JDialog {
 
     private JColorChooser colorChooser;
 
-    public ColorChoiceWindow() {
+    public ColorChoiceWindow(final DrawingController drawingController) {
         super();
         getContentPane().setLayout(new FlowLayout());
 
@@ -28,13 +28,14 @@ public class ColorChoiceWindow extends JDialog {
         colorChooser.getSelectionModel().addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                setColor();
+                setColor(drawingController);
             }
         });
         add(colorChooser, BorderLayout.CENTER);
     }
 
-    public void setColor () {
+    public void setColor (DrawingController drawingController) {
         UserAwareFigureFactory.getInstance().setColor(colorChooser.getColor());
+        drawingController.getDrawingStateBar().changeColor(colorChooser.getColor());
     }
 }

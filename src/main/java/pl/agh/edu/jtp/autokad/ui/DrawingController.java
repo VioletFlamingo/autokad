@@ -14,4 +14,6 @@ public interface DrawingController {
     void undoLastCommand();
 
     void setFigure(Class figureClass);
+
+    StateBar getDrawingStateBar();
 }
