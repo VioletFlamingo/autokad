@@ -38,6 +38,7 @@ public class LanguageChooser extends JFrame {
         this.add(comboBox);
     }
 
+
     private void closeWindow() {
         this.dispose();
     }

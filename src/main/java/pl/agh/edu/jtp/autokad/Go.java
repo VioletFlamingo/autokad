@@ -1,6 +1,7 @@
 package pl.agh.edu.jtp.autokad;
 
 import pl.agh.edu.jtp.autokad.ui.AutoKadWindow;
+import pl.agh.edu.jtp.autokad.ui.ComponentsText;
 import pl.agh.edu.jtp.autokad.ui.LanguageChooser;
 
 import javax.swing.*;
@@ -42,6 +43,7 @@ public class Go {
     public static void setLocale(Locale locale) {
         language = locale;
         messages = ResourceBundle.getBundle("MessagesBundle", locale);
+        ComponentsText.setText(messages);
         createAndShowUI();
     }
 }

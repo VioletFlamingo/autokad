@@ -121,7 +121,7 @@ public class AutoKadWindow extends JFrame{
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                comp=FileManager.openFile();
+                comp=FileManager.openFile(messages);
                 comp.repaint();
             }
         });
@@ -140,7 +140,7 @@ public class AutoKadWindow extends JFrame{
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                FileManager.saveFile(comp);
+                FileManager.saveFile(comp, messages);
             }
         });
 
