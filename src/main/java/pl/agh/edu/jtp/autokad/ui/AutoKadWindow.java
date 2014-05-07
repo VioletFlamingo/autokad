@@ -141,8 +141,8 @@ public class AutoKadWindow extends JFrame{
                 drawingController.setDrawingArea(comp);
                 comp.addMouseListener(new DrawingAreaMouseListener(drawingController));
                 add(comp, BorderLayout.CENTER);
-                revalidate();
-                repaint();
+                comp.revalidate();
+                comp.repaint();
 
             }
         });
