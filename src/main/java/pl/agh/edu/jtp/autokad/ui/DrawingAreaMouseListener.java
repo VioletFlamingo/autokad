@@ -20,13 +20,13 @@ public class DrawingAreaMouseListener extends MouseAdapter {
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        LOGGER.log(Level.INFO, "Presses {0}", e.getPoint());
+        InfoLogger.getInstance().log(Level.INFO+"Presses {0}"+e.getPoint());
         start=e.getPoint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        LOGGER.log(Level.INFO, "Released {0}", e.getPoint());
+        InfoLogger.getInstance().log(Level.INFO+"Released {0}"+e.getPoint());
         controller.draw(start, e.getPoint());
 //        final Figure figure = new Rectangle(Color.CYAN, start, e.getPoint());
 //        controller.addFigure(figure);

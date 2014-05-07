@@ -16,4 +16,6 @@ public interface DrawingController {
     void setFigure(Class figureClass);
 
     StateBar getDrawingStateBar();
+
+    void setDrawingArea(DrawingArea comp);
 }

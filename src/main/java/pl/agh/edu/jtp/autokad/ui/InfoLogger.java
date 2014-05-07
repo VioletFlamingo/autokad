@@ -7,20 +7,55 @@ import java.io.*;
  */
 public class InfoLogger {
     private File info;
-    public void log (String message) {
-        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(info, true)))) {
-            out.println(message);
+    private boolean loggingToFile =true;
+
+
+    private static InfoLogger singleton;
+
+    public static InfoLogger getInstance(){
+        if(singleton == null) {
+            singleton = new InfoLogger();
+        }
+        return singleton;
+    }
+
+    private InfoLogger () {
+        File dir = new File ("logs");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        info = new File("logs/application.log");
+        try {
+            info.createNewFile();
+            if (info.exists()) {
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(info, false)));
+            }
         } catch (IOException e) {
-            //okienko dialogowe
+            e.printStackTrace();
+            LoggerProblemReporter loggerProblem = new LoggerProblemReporter("Problem with info logger occurred");
+            loggingToFile =false;
         }
     }
 
-    InfoLogger () {
-        info = new File("logs/application.log");
-        try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(info, false)));
-        } catch (IOException e) {
-            //okieno dialogowe
+
+    public void log (String message) {
+        if (loggingToFile) {
+            logToFile(message);
+        } else {
+            logToLogger(message);
         }
+    }
+
+    private void logToFile (String message) {
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(info, true)))) {
+            out.println(message);
+        } catch (IOException e) {
+            LoggerProblemReporter loggerProblem = new LoggerProblemReporter("Problem with info logger occurred");
+            loggingToFile =false;
+        }
+    }
+
+    private void logToLogger (String message) {
+        //Logger.log(message);
     }
 }

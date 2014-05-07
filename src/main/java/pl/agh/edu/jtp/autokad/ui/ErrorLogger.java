@@ -10,8 +10,16 @@ public class ErrorLogger {
     private File error;
     private boolean loggingToFile =true;
 
+    private static ErrorLogger singleton;
 
-    ErrorLogger () {
+    public static ErrorLogger getInstance(){
+        if(singleton == null) {
+            singleton = new ErrorLogger();
+        }
+        return singleton;
+    }
+
+    private ErrorLogger () {
         File dir = new File ("logs");
         if (!dir.exists()) {
             dir.mkdir();
@@ -24,7 +32,7 @@ public class ErrorLogger {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            //LoggerProblemReporter loggerProblem = new LoggerProblemReporter("Problem with error logger occurred");
+            LoggerProblemReporter loggerProblem = new LoggerProblemReporter("Problem with error logger occurred");
             loggingToFile =false;
         }
     }

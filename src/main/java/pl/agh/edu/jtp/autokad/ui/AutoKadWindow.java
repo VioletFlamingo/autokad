@@ -20,8 +20,6 @@ public class AutoKadWindow extends JFrame{
     private final ResourceBundle messages;
     private DrawingArea comp;
     private final DefaultDrawingController drawingController;
-    private final ErrorLogger errorLogger;
-    private final InfoLogger infoLogger;
 
     public AutoKadWindow(String title, ResourceBundle messages) {
         super(title);
@@ -43,10 +41,7 @@ public class AutoKadWindow extends JFrame{
         add(figureToolBar, BorderLayout.WEST);
 
         add(drawingController.getDrawingStateBar(), BorderLayout.SOUTH);
-        infoLogger = new InfoLogger();
-        errorLogger = new ErrorLogger();
 
-        errorLogger.log("Pizza!!!");
     }
 
 
@@ -116,13 +111,39 @@ public class AutoKadWindow extends JFrame{
     }
 
 
+//    private JMenuItem createOpenMenuItem() {
+//        final JMenuItem open = new JMenuItem(messages.getString("open"));
+//        open.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                comp=FileManager.openFile(messages);
+//                comp.repaint();
+//            }
+//        });
+//
+//        //ctrl+o opens picture
+//        final KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK);
+//
+//        open.setAccelerator(keyStroke);
+//
+//        return open;
+//
+//    }
+
+
     private JMenuItem createOpenMenuItem() {
         final JMenuItem open = new JMenuItem(messages.getString("open"));
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                remove(comp);
                 comp=FileManager.openFile(messages);
-                comp.repaint();
+                drawingController.setDrawingArea(comp);
+                comp.addMouseListener(new DrawingAreaMouseListener(drawingController));
+                add(comp, BorderLayout.CENTER);
+                revalidate();
+                repaint();
+
             }
         });
 
@@ -134,6 +155,8 @@ public class AutoKadWindow extends JFrame{
         return open;
 
     }
+
+
 
     private JMenuItem createSaveMenuItem() {
         final JMenuItem save = new JMenuItem(messages.getString("save"));

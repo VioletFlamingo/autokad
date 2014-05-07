@@ -14,7 +14,7 @@ public class DefaultDrawingController implements DrawingController {
 
     private FigureFactory figureFactory;
 
-    private final DrawingArea drawingArea;
+    private DrawingArea drawingArea;
     private final Deque<Command> commands = new LinkedList<Command>();
 
     ResourceBundle messages;
@@ -53,5 +53,10 @@ public class DefaultDrawingController implements DrawingController {
 
     public StateBar getDrawingStateBar () {
         return stateBar;
+    }
+
+    @Override
+    public void setDrawingArea(DrawingArea comp) {
+        this.drawingArea=comp;
     }
 }
