@@ -34,6 +34,7 @@ public class DefaultDrawingController implements DrawingController {
         final PaintCommand paintCommand = new PaintCommand(figure);
         paintCommand.execute(drawingArea);
         commands.addLast(paintCommand);
+        updateNumberOfFigures();
     }
 
     @Override
@@ -41,6 +42,7 @@ public class DefaultDrawingController implements DrawingController {
         if (!commands.isEmpty()) {
             final Command command = commands.removeLast();
             command.undo(drawingArea);
+            updateNumberOfFigures();
         }
 
     }
@@ -58,5 +60,10 @@ public class DefaultDrawingController implements DrawingController {
     @Override
     public void setDrawingArea(DrawingArea comp) {
         this.drawingArea=comp;
+    }
+
+    @Override
+    public void updateNumberOfFigures() {
+        stateBar.changeNumberOfFigures(commands.size());
     }
 }

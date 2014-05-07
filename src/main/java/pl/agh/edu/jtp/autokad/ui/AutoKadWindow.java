@@ -143,6 +143,7 @@ public class AutoKadWindow extends JFrame{
                 add(comp, BorderLayout.CENTER);
                 comp.revalidate();
                 comp.repaint();
+                drawingController.updateNumberOfFigures();
 
             }
         });

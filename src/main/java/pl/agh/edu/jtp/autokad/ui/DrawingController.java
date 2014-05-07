@@ -18,4 +18,6 @@ public interface DrawingController {
     StateBar getDrawingStateBar();
 
     void setDrawingArea(DrawingArea comp);
+
+    void updateNumberOfFigures();
 }
