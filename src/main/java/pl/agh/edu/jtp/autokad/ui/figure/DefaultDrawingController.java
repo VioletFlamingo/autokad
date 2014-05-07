@@ -17,6 +17,8 @@ public class DefaultDrawingController implements DrawingController {
     private DrawingArea drawingArea;
     private final Deque<Command> commands = new LinkedList<Command>();
 
+    private Figure currentlyDrawn;
+
     ResourceBundle messages;
 
     private StateBar stateBar;
@@ -30,11 +32,17 @@ public class DefaultDrawingController implements DrawingController {
 
     @Override
     public void draw (Point start, Point end) {
+        currentlyDrawn=null;
         final Figure figure = figureFactory.createFigure(start, end);
         final PaintCommand paintCommand = new PaintCommand(figure);
         paintCommand.execute(drawingArea);
         commands.addLast(paintCommand);
         updateNumberOfFigures();
+
+        if(currentlyDrawn != null) {
+            drawingArea.removeFigure(currentlyDrawn);
+            currentlyDrawn = null;
+        }
     }
 
     @Override
@@ -65,5 +73,16 @@ public class DefaultDrawingController implements DrawingController {
     @Override
     public void updateNumberOfFigures() {
         stateBar.changeNumberOfFigures(commands.size());
+    }
+
+    @Override
+    public void drawDraggedFigure(Point start, Point current) {
+        Figure figure = figureFactory.createFigure(start, current);
+        if(currentlyDrawn != null) {
+            drawingArea.removeFigure(currentlyDrawn);
+        }
+        currentlyDrawn = figure;
+        drawingArea.addFigure(figure);
+        drawingArea.repaint();
     }
 }

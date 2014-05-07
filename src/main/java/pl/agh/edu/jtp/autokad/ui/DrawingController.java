@@ -20,4 +20,6 @@ public interface DrawingController {
     void setDrawingArea(DrawingArea comp);
 
     void updateNumberOfFigures();
+
+    void drawDraggedFigure(Point start, Point current);
 }
