@@ -38,6 +38,10 @@ public class DrawingArea extends JPanel implements Externalizable{
         repaint();
     }
 
+    public int getNumberOfFigures() {
+        return figures.size();
+    }
+
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         int size = figures.size();

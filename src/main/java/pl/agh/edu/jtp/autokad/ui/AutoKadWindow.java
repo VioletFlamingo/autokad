@@ -111,26 +111,6 @@ public class AutoKadWindow extends JFrame{
     }
 
 
-//    private JMenuItem createOpenMenuItem() {
-//        final JMenuItem open = new JMenuItem(messages.getString("open"));
-//        open.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                comp=FileManager.openFile(messages);
-//                comp.repaint();
-//            }
-//        });
-//
-//        //ctrl+o opens picture
-//        final KeyStroke keyStroke = KeyStroke.getKeyStroke(KeyEvent.VK_O, InputEvent.CTRL_DOWN_MASK);
-//
-//        open.setAccelerator(keyStroke);
-//
-//        return open;
-//
-//    }
-
-
     private JMenuItem createOpenMenuItem() {
         final JMenuItem open = new JMenuItem(messages.getString("open"));
         open.addActionListener(new ActionListener() {

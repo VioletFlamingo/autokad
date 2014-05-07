@@ -58,6 +58,6 @@ public class InfoLogger {
     }
 
     private void logToLogger (String message) {
-        //Logger.log(message);
+        System.out.println(message+"\n");
     }
 }

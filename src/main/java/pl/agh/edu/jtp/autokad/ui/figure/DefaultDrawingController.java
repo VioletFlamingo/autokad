@@ -72,7 +72,7 @@ public class DefaultDrawingController implements DrawingController {
 
     @Override
     public void updateNumberOfFigures() {
-        stateBar.changeNumberOfFigures(commands.size());
+        stateBar.changeNumberOfFigures(drawingArea.getNumberOfFigures());
     }
 
     @Override
@@ -84,5 +84,6 @@ public class DefaultDrawingController implements DrawingController {
         currentlyDrawn = figure;
         drawingArea.addFigure(figure);
         drawingArea.repaint();
+        drawingArea.validate();
     }
 }
