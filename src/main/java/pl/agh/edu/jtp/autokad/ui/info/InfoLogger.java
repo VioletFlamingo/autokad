@@ -1,4 +1,6 @@
-package pl.agh.edu.jtp.autokad.ui;
+package pl.agh.edu.jtp.autokad.ui.info;
+
+import pl.agh.edu.jtp.autokad.ui.LoggerProblemReporter;
 
 import java.io.*;
 

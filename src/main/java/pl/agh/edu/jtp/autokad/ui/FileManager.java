@@ -1,5 +1,7 @@
 package pl.agh.edu.jtp.autokad.ui;
 
+import pl.agh.edu.jtp.autokad.ui.info.ErrorLogger;
+
 import javax.swing.*;
 import java.io.*;
 import java.util.ResourceBundle;
@@ -17,11 +19,14 @@ public class FileManager {
         try {
             drawingArea.readExternal(new ObjectInputStream(new FileInputStream(file)));
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
         }
         return drawingArea;
     }
@@ -34,7 +39,8 @@ public class FileManager {
                 new FileOutputStream(saveFile.getSelectedFile()))){
             drawingArea.writeExternal(objectOutput);
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
         }
     }
 }

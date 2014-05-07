@@ -4,6 +4,7 @@ import pl.agh.edu.jtp.autokad.ui.figure.Figure;
 import pl.agh.edu.jtp.autokad.ui.figure.Oval;
 import pl.agh.edu.jtp.autokad.ui.figure.Rectangle;
 import pl.agh.edu.jtp.autokad.ui.figure.RoundedRectangle;
+import pl.agh.edu.jtp.autokad.ui.info.ErrorLogger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -104,7 +105,8 @@ public class StateBar extends JPanel {
                 JLabel label = new JLabel(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("oval.jpg"))));
                 panel.add(label);
             } catch (IOException | IllegalArgumentException e) {
-                e.printStackTrace();
+                ErrorLogger.getInstance().log(e.getMessage());
+                //e.printStackTrace();
                 JLabel label = new JLabel("OVAL");
                 panel.add(label);
             }
@@ -113,7 +115,8 @@ public class StateBar extends JPanel {
                 JLabel label = new JLabel(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("rect.jpg"))));
                 panel.add(label);
             } catch (IOException | IllegalArgumentException e) {
-                e.printStackTrace();
+                ErrorLogger.getInstance().log(e.getMessage());
+                //e.printStackTrace();
                 JLabel label = new JLabel("RECTANGLE");
                 panel.add(label);
             }
@@ -122,7 +125,8 @@ public class StateBar extends JPanel {
                 JLabel label = new JLabel(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("roundrect.jpg"))));
                 panel.add(label);
             } catch (IOException | IllegalArgumentException e) {
-                e.printStackTrace();
+                ErrorLogger.getInstance().log(e.getMessage());
+                //e.printStackTrace();
                 JLabel label = new JLabel("ROUNDED RECTANGLE");
                 panel.add(label);
             }
@@ -131,7 +135,8 @@ public class StateBar extends JPanel {
                 JLabel label = new JLabel(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("Line.jpg"))));
                 panel.add(label);
             } catch (IOException | IllegalArgumentException e) {
-                e.printStackTrace();
+                ErrorLogger.getInstance().log(e.getMessage());
+                //e.printStackTrace();
                 JLabel label = new JLabel("LINE");
                 panel.add(label);
             }

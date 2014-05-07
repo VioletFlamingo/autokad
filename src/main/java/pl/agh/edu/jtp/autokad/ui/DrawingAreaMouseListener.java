@@ -1,5 +1,7 @@
 package pl.agh.edu.jtp.autokad.ui;
 
+import pl.agh.edu.jtp.autokad.ui.info.InfoLogger;
+
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,13 +22,13 @@ public class DrawingAreaMouseListener extends MouseAdapter {
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        InfoLogger.getInstance().log(Level.INFO+"Presses {0}"+e.getPoint());
+        InfoLogger.getInstance().log(Level.INFO + "Presses {0}" + e.getPoint());
         start=e.getPoint();
     }
 
     @Override
     public void mouseReleased(MouseEvent e) {
-        InfoLogger.getInstance().log(Level.INFO+"Released {0}"+e.getPoint());
+        InfoLogger.getInstance().log(Level.INFO + "Released {0}" + e.getPoint());
         controller.draw(start, e.getPoint());
 //        final Figure figure = new Rectangle(Color.CYAN, start, e.getPoint());
 //        controller.addFigure(figure);

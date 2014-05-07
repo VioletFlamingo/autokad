@@ -4,6 +4,7 @@ import pl.agh.edu.jtp.autokad.ui.figure.Figure;
 import pl.agh.edu.jtp.autokad.ui.figure.Line;
 import pl.agh.edu.jtp.autokad.ui.figure.Oval;
 import pl.agh.edu.jtp.autokad.ui.figure.RoundedRectangle;
+import pl.agh.edu.jtp.autokad.ui.info.ErrorLogger;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -66,10 +67,12 @@ public class FigureButton {
         try {
             lineButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("Line.jpg"))));
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             lineButton.setText("LINE");
         }  catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             lineButton.setText("LINE");
         }
         return lineButton;
@@ -81,10 +84,12 @@ public class FigureButton {
         try {
             ovalButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("oval.jpg"))));
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             ovalButton.setText("OVAL");
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             ovalButton.setText("OVAL");
         }
         return ovalButton;
@@ -96,10 +101,12 @@ public class FigureButton {
         try {
             rectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("rect.jpg"))));
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             rectangleButton.setText("RECTANGLE");
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             rectangleButton.setText("RECTANGLE");
         }
         return rectangleButton;
@@ -111,10 +118,12 @@ public class FigureButton {
         try {
             roundedRectangleButton.setIcon(new ImageIcon(ImageIO.read(ClassLoader.getSystemResource("roundrect.jpg"))));
         } catch (IOException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             roundedRectangleButton.setText("ROUNDED RECTANGLE");
         }  catch (IllegalArgumentException e) {
-            e.printStackTrace();
+            ErrorLogger.getInstance().log(e.getMessage());
+            //e.printStackTrace();
             roundedRectangleButton.setText("ROUNDED RECTANGLE");
         }
         return roundedRectangleButton;
