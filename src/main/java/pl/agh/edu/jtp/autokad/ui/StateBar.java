@@ -9,21 +9,26 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.util.ResourceBundle;
 
 /**
  * Created by Paulina on 02.05.2014.
  */
 public class StateBar extends JPanel {
+    private final ResourceBundle messages;
     private JPanel chosenFigure;
     private JPanel chosenColor;
     private JLabel savedState;
+    private JLabel numberOfFigures;
 
     private boolean allInitialized = false;
 
-    public StateBar(Class figure, Color color) {
+    public StateBar(Class figure, Color color, ResourceBundle messages) {
+        this.messages = messages;
         changeFigure(figure);
         changeSaved(false);
         changeColor(color);
+        changeNumberOfFigures(0);
         this.setLayout(new FlowLayout(FlowLayout.TRAILING));
         allInitialized=true;
         addIcons();
@@ -38,12 +43,15 @@ public class StateBar extends JPanel {
         if (allInitialized) {
             addIcons();
         }
+        this.validate();
+        this.repaint();
     }
 
     private void addIcons() {
+        this.add(savedState);
         this.add(chosenFigure);
         this.add(chosenColor);
-        this.add(savedState);
+        this.add(numberOfFigures);
     }
 
     public void changeColor(Color color) {
@@ -56,21 +64,39 @@ public class StateBar extends JPanel {
         if (allInitialized) {
             addIcons();
         }
+        this.validate();
+        this.repaint();
     }
 
     public void changeSaved(boolean saved) {
         this.removeAll();
         JLabel savedLabel = new JLabel();
         if (saved) {
-            savedLabel.setText("Saved");
+            savedLabel.setText(messages.getString("changed"));
         } else {
-            savedLabel.setText("Changed");
+            savedLabel.setText(messages.getString("saved"));
         }
         this.savedState = savedLabel;
         if (allInitialized) {
             addIcons();
         }
+        this.validate();
+        this.repaint();
     }
+
+
+    public void changeNumberOfFigures (int amountOfFigures) {
+        this.removeAll();
+        JLabel numberLabel = new JLabel();
+        numberLabel.setText(amountOfFigures+" "+messages.getString("figures"));
+        this.numberOfFigures = numberLabel;
+        if (allInitialized) {
+            addIcons();
+        }
+        this.validate();
+        this.repaint();
+    }
+
 
     private void getImage(JPanel panel, Class figure) {
         if (figure==Oval.class) {

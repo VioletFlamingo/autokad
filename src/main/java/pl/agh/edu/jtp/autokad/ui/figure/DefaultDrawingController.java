@@ -17,9 +17,13 @@ public class DefaultDrawingController implements DrawingController {
     private final DrawingArea drawingArea;
     private final Deque<Command> commands = new LinkedList<Command>();
 
-    private StateBar stateBar = new StateBar(Line.class, Color.MAGENTA);
+    ResourceBundle messages;
 
-    public DefaultDrawingController(DrawingArea drawingArea) {
+    private StateBar stateBar;
+
+    public DefaultDrawingController(DrawingArea drawingArea, ResourceBundle messages) {
+        this.messages=messages;
+        stateBar = new StateBar(Line.class, Color.MAGENTA, messages);
         this.drawingArea= drawingArea;
         figureFactory = UserAwareFigureFactory.getInstance();
     }

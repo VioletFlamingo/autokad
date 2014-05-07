@@ -10,6 +10,26 @@ public class ErrorLogger {
     private File error;
     private boolean loggingToFile =true;
 
+
+    ErrorLogger () {
+        File dir = new File ("logs");
+        if (!dir.exists()) {
+            dir.mkdir();
+        }
+        error = new File("logs/error.log");
+        try {
+            error.createNewFile();
+            if (error.exists()) {
+                PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(error, false)));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            //LoggerProblemReporter loggerProblem = new LoggerProblemReporter("Problem with error logger occurred");
+            loggingToFile =false;
+        }
+    }
+
+
     public void log (String message) {
         if (loggingToFile) {
             logToFile(message);
@@ -29,15 +49,5 @@ public class ErrorLogger {
 
     private void logToLogger (String message) {
         //Logger.log(message);
-    }
-
-    ErrorLogger () {
-        error = new File("logs/error.log");
-        try {
-            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(error, false)));
-        } catch (IOException e) {
-            LoggerProblemReporter loggerProblem = new LoggerProblemReporter("Problem with error logger occurred");
-            loggingToFile =false;
-        }
     }
 }

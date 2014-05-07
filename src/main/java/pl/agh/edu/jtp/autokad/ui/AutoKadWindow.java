@@ -10,26 +10,29 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.util.ResourceBundle;
 
 /**
  * Created by Paulina on 24.04.2014.
  */
 public class AutoKadWindow extends JFrame{
 
+    private final ResourceBundle messages;
     private DrawingArea comp;
     private final DefaultDrawingController drawingController;
     private final ErrorLogger errorLogger;
     private final InfoLogger infoLogger;
 
-    public AutoKadWindow(String title) {
+    public AutoKadWindow(String title, ResourceBundle messages) {
         super(title);
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 
+        this.messages = messages;
 
         comp = new DrawingArea();
-        drawingController = new DefaultDrawingController(comp);
+        drawingController = new DefaultDrawingController(comp, messages);
         comp.addMouseListener(new DrawingAreaMouseListener(drawingController));
         add(comp, BorderLayout.CENTER);
 
@@ -42,6 +45,8 @@ public class AutoKadWindow extends JFrame{
         add(drawingController.getDrawingStateBar(), BorderLayout.SOUTH);
         infoLogger = new InfoLogger();
         errorLogger = new ErrorLogger();
+
+        errorLogger.log("Pizza!!!");
     }
 
 
@@ -53,14 +58,14 @@ public class AutoKadWindow extends JFrame{
     }
 
     private Component createEditMenu() {
-        final JMenu edit = new JMenu("Edit");
+        final JMenu edit = new JMenu(messages.getString("edit"));
         edit.add(createColorMenuItem());
         edit.add(createUndoMenuItem());
         return edit;
     }
 
     private Component createFileMenu() {
-        final JMenu file = new JMenu("File");
+        final JMenu file = new JMenu(messages.getString("file"));
         file.add(createOpenMenuItem());
         file.add(createSaveMenuItem());
         return file;
@@ -89,7 +94,7 @@ public class AutoKadWindow extends JFrame{
     }
 
     private JMenuItem createColorMenuItem() {
-        final JMenuItem setColor = new JMenuItem("Set color");
+        final JMenuItem setColor = new JMenuItem(messages.getString("color"));
         setColor.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -112,7 +117,7 @@ public class AutoKadWindow extends JFrame{
 
 
     private JMenuItem createOpenMenuItem() {
-        final JMenuItem open = new JMenuItem("Open");
+        final JMenuItem open = new JMenuItem(messages.getString("open"));
         open.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -131,7 +136,7 @@ public class AutoKadWindow extends JFrame{
     }
 
     private JMenuItem createSaveMenuItem() {
-        final JMenuItem save = new JMenuItem("Save");
+        final JMenuItem save = new JMenuItem(messages.getString("save"));
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -148,7 +153,7 @@ public class AutoKadWindow extends JFrame{
     }
 
     private JMenuItem createUndoMenuItem() {
-        final JMenuItem undo = new JMenuItem("Undo");
+        final JMenuItem undo = new JMenuItem(messages.getString("undo"));
         undo.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
